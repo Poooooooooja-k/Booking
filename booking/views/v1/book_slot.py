@@ -2,6 +2,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from booking.models import FitnessClass, Booking
+from core.decorators.token_required import token_required
 import logging
 
 logger = logging.getLogger(__name__)
@@ -10,10 +11,11 @@ class BookClassApiView(GenericAPIView):
     """
     API endpoint to book a fitness class.
     """
+    @token_required
     def post(self, request):
         class_id = request.data.get("class_id")
         name = request.data.get("client_name")
-        email = request.data.get("client_email")
+        email = request.email
 
         logger.info(f"Booking attempt: class_id={class_id}, client_name={name}, client_email={email}")
 

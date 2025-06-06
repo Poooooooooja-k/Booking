@@ -1,26 +1,33 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from booking.models import Booking
 from booking.serializers.booking import BookingSerializer
+from core.decorators.token_required import token_required
+from authentication.models import User  # import this if needed
 import logging
 
 logger = logging.getLogger(__name__)
 
-class UserBookingsApiView(ListAPIView):
+class UserBookingsApiView(GenericAPIView):
     """
-    API view to list all bookings for a specific user based on their email.
-    Accepts 'email' as a query parameter.
+    API view to list all bookings for a specific user.
+    Extracts the user email from the token.
+    Token must be passed in the request headers.
     """
     serializer_class = BookingSerializer
 
-    def get_queryset(self):
-        email = self.request.query_params.get('email')
+    @token_required
+    def get(self, request):
+        user_email = request.email 
 
-        if not email:
-            logger.warning("UserBookingsApiView: Missing 'email' query parameter.")
-            return Booking.objects.none()
+        if not user_email:
+            logger.warning("UserBookingsApiView: Email not found in token.")
+            return Response({"error": "User email not found in token."}, status=status.HTTP_400_BAD_REQUEST)
 
-        bookings = Booking.objects.filter(client_email=email)
-        logger.info(f"UserBookingsApiView: {bookings.count()} bookings found for email: {email}")
-        return bookings
+        bookings = Booking.objects.filter(client_email=user_email)
+
+        logger.info(f"UserBookingsApiView: {bookings.count()} bookings found for {user_email}")
+
+        serializer = self.get_serializer(bookings, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

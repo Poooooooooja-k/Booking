@@ -3,5 +3,5 @@ from booking.models import ClassType
 
 class ClassTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        Model="ClassType"
+        model=ClassType
         fields="__all__"

@@ -1,6 +1,7 @@
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
+from core.sent_email import send_welcome_email
 from authentication.serializer.signup import UserSignupSerializer
 
 class UserSignupApiView(GenericAPIView):
@@ -20,7 +21,9 @@ class UserSignupApiView(GenericAPIView):
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            serializer.save() 
+            user = serializer.save()
+            # Send welcome email
+            send_welcome_email(user.email, user.name)
             return Response(
                 {"message": "User registered successfully", "data": serializer.data},
                 status=status.HTTP_201_CREATED,
