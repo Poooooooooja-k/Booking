@@ -26,39 +26,39 @@
 - **pre-commit** (to automate linting/formatting before commits)
 - **pylint** (for additional static code analysis)
 
-## ⚙️ Setup Instructions
+# ⚙️ Setup Instructions
 
-# 1. Clone the repository
+## 1. Clone the repository
 
 git clone https://github.com/Poooooooooja-k/Booking.git
 cd booking
 
-# 2. Create and activate a virtual environment
+## 2. Create and activate a virtual environment
 
 python -m venv venv
 source venv/bin/activate # On Windows: venv\Scripts\activate
 
-# 3. Install dependencies
+## 3. Install dependencies
 
 pip install -r requirements.txt
 
-# 4. Run migrations
+## 4. Run migrations
 
 python manage.py migrate
 
-# 5. Start the server
+## 5. Start the server
 
 python manage.py runserver
 
-# 6. Seed sample data
+## 6. Seed sample data
 
 python manage.py loaddata seed/initial_data.json
 
-# Swagger UI: http://localhost:8000/swagger/
+## Swagger UI: http://localhost:8000/swagger/
 
-## 🔐 Authentication API - Sample Requests
+# 🔐 Authentication API - Sample Requests
 
-# 1. User signup
+## 1. User signup
 
 curl -X POST http://localhost:8000/auth/v1/signup/ \
  -H "Content-Type: application/json" \
@@ -70,7 +70,7 @@ curl -X POST http://localhost:8000/auth/v1/signup/ \
 "phone_number": "9876543210"
 }'
 
-# 2. User login
+## 2. User login
 
 curl -X POST http://localhost:8000/auth/v1/login/ \
  -H "Content-Type: application/json" \
@@ -79,7 +79,7 @@ curl -X POST http://localhost:8000/auth/v1/login/ \
 "password": "strongpassword123"
 }'
 
-# 3 . Update User
+## 3 . Update User
 
 curl -X PUT http://localhost:8000/auth/v1/update_user/ \
  -H "Content-Type: application/json" \
@@ -90,26 +90,26 @@ curl -X PUT http://localhost:8000/auth/v1/update_user/ \
 "age": 26
 }'
 
-# 4. Get all users
+## 4. Get all users
 
 curl -X GET http://localhost:8000/auth/v1/user_list/ \
  -H "Authorization: Bearer <your_token_here>"
 
-# 5 . Get User By Id
+## 5 . Get User By Id
 
 curl -X GET "http://localhost:8000/auth/v1/user_list_by_id/?id=1" \
  -H "Authorization: Bearer <your_token_here>"
 
-# 6. Delete user (soft delete)
+## 6. Delete user (soft delete)
 
 curl -X DELETE http://localhost:8000/auth/v1/delete_user/ \
  -H "Content-Type: application/json" \
  -H "Authorization: Bearer <your_token_here>" \
  -d '{"id": 1}'
 
-## 🔐 Booking API - Sample Requests
+# 🔐 Booking API - Sample Requests
 
-# 1. Create class type
+## 1. Create class type
 
 curl -X POST http://localhost:8000/bookings/v1/create_class_type/ \
  -H "Content-Type: application/json" \
@@ -119,17 +119,17 @@ curl -X POST http://localhost:8000/bookings/v1/create_class_type/ \
 "description": "Beginner level yoga session"
 }'
 
-# 2. List all class types
+## 2. List all class types
 
 curl -X GET http://localhost:8000/bookings/v1/list_class/ \
  -H "Authorization: Bearer <your_token_here>"
 
-# 3.Retrieve Class Type by ID
+## 3.Retrieve Class Type by ID
 
 curl -X GET "http://localhost:8000/bookings/v1/retrive_class/?id=1" \
  -H "Authorization: Bearer <your_token_here>"
 
-# 4.Update Class Type
+## 4.Update Class Type
 
 curl -X PUT http://localhost:8000/bookings/v1/Update_class_type/ \
  -H "Content-Type: application/json" \
@@ -140,14 +140,14 @@ curl -X PUT http://localhost:8000/bookings/v1/Update_class_type/ \
 "description": "For experienced participants"
 }'
 
-# 5.Soft delete class type
+## 5.Soft delete class type
 
 curl -X DELETE http://localhost:8000/bookings/v1/delete_class_type/ \
  -H "Content-Type: application/json" \
  -H "Authorization: Bearer <your_token_here>" \
  -d '{"id": 1}'
 
-# 6 .Create fitness class
+## 6 .Create fitness class
 curl -X POST http://localhost:8000/bookings/v1/create_fitness_class/ \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <your_token_here>" \
@@ -160,16 +160,16 @@ curl -X POST http://localhost:8000/bookings/v1/create_fitness_class/ \
 }'
 
 
-# 7. List all fitness class
+## 7. List all fitness class
 curl -X GET http://localhost:8000/bookings/v1/list_fitness_class/ \
   -H "Authorization: Bearer <your_token_here>"
 
-# 8.Retrieve Fitness Class by ID
+## 8.Retrieve Fitness Class by ID
 curl -X GET "http://localhost:8000/bookings/v1/retrieve_fitness_class/?id=1" \
   -H "Authorization: Bearer <your_token_here>"
 
 
-# 9. Update Fitness Class
+## 9. Update Fitness Class
 curl -X PUT http://localhost:8000/bookings/v1/update_fitness_class/ \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <your_token_here>" \
@@ -179,13 +179,13 @@ curl -X PUT http://localhost:8000/bookings/v1/update_fitness_class/ \
     "capacity": 25
 }'
 
-# 10. soft delete
+## 10. soft delete
 curl -X DELETE http://localhost:8000/bookings/v1/delete_fitness_class/ \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <your_token_here>" \
   -d '{"id": 1}'
 
-# 11. book a class slot
+## 11. book a class slot
 curl -X POST http://localhost:8000/bookings/v1/book_slot/ \
   -H "Content-Type: application/json" \
   -d '{
@@ -194,15 +194,15 @@ curl -X POST http://localhost:8000/bookings/v1/book_slot/ \
     "client_email": "john@example.com"
 }'
 
-# 12. cancel a booking
+## 12. cancel a booking
 curl -X POST "http://localhost:8000/bookings/v1/cancel_booking/?booking_id=1" \
   -H "Authorization: Bearer <your_token_here>"
 
-# 13. List All Bookings by User Email
+## 13. List All Bookings by User Email
 curl -X GET "http://localhost:8000/bookings/v1/user_bookings/" \
   -H "Authorization: Bearer <your_token_here>"
 
-# 14. List Upcoming Classes
+## 14. List Upcoming Classes
 curl -X GET http://localhost:8000/bookings/v1/list_upcoming_class/
 
 
