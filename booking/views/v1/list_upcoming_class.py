@@ -3,6 +3,7 @@ from booking.models import FitnessClass
 from booking.serializers.fitness_class import FitnessSerializer
 from django.utils import timezone
 
+
 class UpcomingClassesApiView(ListAPIView):
     """
     API view to retrieve a list of upcoming fitness classes.
@@ -12,6 +13,7 @@ class UpcomingClassesApiView(ListAPIView):
 
     Uses the FitnessSerializer to serialize the fitness class data.
     """
+
     serializer_class = FitnessSerializer
 
     def get_queryset(self):
@@ -25,4 +27,6 @@ class UpcomingClassesApiView(ListAPIView):
         Returns:
             QuerySet: Filtered queryset of FitnessClass instances.
         """
-        return FitnessClass.objects.filter(start_time__gte=timezone.now(), is_deleted=False)
+        return FitnessClass.objects.filter(
+            start_time__gte=timezone.now(), is_deleted=False
+        )

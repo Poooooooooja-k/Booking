@@ -30,6 +30,7 @@ class UserLoginApiView(GenericAPIView):
         - 201 Created: Login successful
         - 400 Bad Request: Validation failed (invalid email/password)
     """
+
     serializer_class = UserLoginSerializer
 
     def post(self, request):

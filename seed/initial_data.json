@@ -1,0 +1,46 @@
+[
+  {
+    "model": "authentication.user",
+    "pk": 1,
+    "fields": {
+      "name": "Pooja",
+      "email": "pooja@example.com",
+      "age": 25,
+      "phone_number": "9876543210",
+      "password": "hashed_password_here",
+      "is_active": true,
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "booking.classtype",
+    "pk": 1,
+    "fields": {
+      "name": "Yoga",
+      "description": "A relaxing class for beginners",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "booking.fitnessclass",
+    "pk": 1,
+    "fields": {
+      "class_type": 1,
+      "instructor_name": "Anjali Mehta",
+      "start_time": "2025-06-10T07:00:00Z",
+      "end_time": "2025-06-10T08:00:00Z",
+      "capacity": 20,
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "booking.booking",
+    "pk": 1,
+    "fields": {
+      "fitness_class": 1,
+      "client_name": "John Doe",
+      "client_email": "john@example.com",
+      "is_cancelled": false
+    }
+  }
+]

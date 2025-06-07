@@ -1,8 +1,9 @@
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
-from core.sent_email import send_welcome_email
+from core.utils.sent_email import send_welcome_email
 from authentication.serializer.signup import UserSignupSerializer
+
 
 class UserSignupApiView(GenericAPIView):
     """
@@ -16,6 +17,7 @@ class UserSignupApiView(GenericAPIView):
         201 Created on successful registration.
         400 Bad Request with validation errors otherwise.
     """
+
     serializer_class = UserSignupSerializer
 
     def post(self, request):

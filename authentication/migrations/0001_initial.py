@@ -4,29 +4,38 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateField(auto_now=True)),
-                ('name', models.CharField(blank=True, max_length=100, null=True)),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('age', models.IntegerField(blank=True, null=True)),
-                ('phone_number', models.CharField(blank=True, max_length=10, null=True)),
-                ('password', models.CharField(max_length=255)),
-                ('is_active', models.BooleanField(default=True)),
-                ('is_deleted', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateField(auto_now=True)),
+                ("name", models.CharField(blank=True, max_length=100, null=True)),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                ("age", models.IntegerField(blank=True, null=True)),
+                (
+                    "phone_number",
+                    models.CharField(blank=True, max_length=10, null=True),
+                ),
+                ("password", models.CharField(max_length=255)),
+                ("is_active", models.BooleanField(default=True)),
+                ("is_deleted", models.BooleanField(default=False)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

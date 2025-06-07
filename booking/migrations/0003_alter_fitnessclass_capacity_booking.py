@@ -5,30 +5,44 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('booking', '0002_classtype_is_deleted_fitnessclass_is_deleted_and_more'),
+        ("booking", "0002_classtype_is_deleted_fitnessclass_is_deleted_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='fitnessclass',
-            name='capacity',
+            model_name="fitnessclass",
+            name="capacity",
             field=models.PositiveIntegerField(default=40),
         ),
         migrations.CreateModel(
-            name='Booking',
+            name="Booking",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateField(auto_now=True)),
-                ('client_name', models.CharField(max_length=100)),
-                ('client_email', models.EmailField(max_length=254)),
-                ('is_cancelled', models.BooleanField(default=False)),
-                ('fitness_class', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bookings', to='booking.fitnessclass')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateField(auto_now=True)),
+                ("client_name", models.CharField(max_length=100)),
+                ("client_email", models.EmailField(max_length=254)),
+                ("is_cancelled", models.BooleanField(default=False)),
+                (
+                    "fitness_class",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="bookings",
+                        to="booking.fitnessclass",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('fitness_class', 'client_email')},
+                "unique_together": {("fitness_class", "client_email")},
             },
         ),
     ]

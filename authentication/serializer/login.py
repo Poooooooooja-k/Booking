@@ -2,6 +2,7 @@ from rest_framework import serializers
 from authentication.models import User
 from django.contrib.auth.hashers import check_password
 
+
 class UserLoginSerializer(serializers.Serializer):
     """
     Serializer for user login authentication.
@@ -24,12 +25,13 @@ class UserLoginSerializer(serializers.Serializer):
             - Incorrect password
             - Inactive account
     """
+
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        email = data.get('email')
-        password = data.get('password')
+        email = data.get("email")
+        password = data.get("password")
 
         if not User.objects.filter(email=email).exists():
             raise serializers.ValidationError({"email": "Email is not registered."})

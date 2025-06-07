@@ -4,7 +4,7 @@ from booking.models import FitnessClass
 
 class FitnessClassSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FitnessClass  
+        model = FitnessClass
         fields = "__all__"
 
 
